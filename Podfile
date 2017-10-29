@@ -7,6 +7,7 @@ target 'DFX_App' do
 
   # Pods for DFX_App
   pod ‘DKCamera’
+  pod 'Alamofire', '~> 4.5'
 
   target 'DFX_AppTests' do
     inherit! :search_paths

@@ -11,6 +11,7 @@
 		6545CB201FA54E2E002CADD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6545CB1F1FA54E2E002CADD3 /* ViewController.swift */; };
 		6545CB6A1FA59F23002CADD3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6545CB691FA59F23002CADD3 /* CameraViewController.swift */; };
 		6545CB6C1FA5AA4E002CADD3 /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6545CB6B1FA5AA4E002CADD3 /* TagsViewController.swift */; };
+		6545CB6E1FA618AD002CADD3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6545CB6D1FA618AD002CADD3 /* ProfileViewController.swift */; };
 		6559834E1FA50AA500D2D29D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6559834D1FA50AA500D2D29D /* AppDelegate.swift */; };
 		655983531FA50AA500D2D29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 655983511FA50AA500D2D29D /* Main.storyboard */; };
 		655983551FA50AA500D2D29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 655983541FA50AA500D2D29D /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		6545CB1F1FA54E2E002CADD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6545CB691FA59F23002CADD3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6545CB6B1FA5AA4E002CADD3 /* TagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
+		6545CB6D1FA618AD002CADD3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6559834A1FA50AA500D2D29D /* DFX_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFX_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6559834D1FA50AA500D2D29D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		655983521FA50AA500D2D29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				6559834D1FA50AA500D2D29D /* AppDelegate.swift */,
 				6545CB1F1FA54E2E002CADD3 /* ViewController.swift */,
 				655983511FA50AA500D2D29D /* Main.storyboard */,
+				6545CB6D1FA618AD002CADD3 /* ProfileViewController.swift */,
 				655983541FA50AA500D2D29D /* Assets.xcassets */,
 				655983561FA50AA500D2D29D /* LaunchScreen.storyboard */,
 				655983591FA50AA500D2D29D /* Info.plist */,
@@ -455,6 +458,7 @@
 			files = (
 				6545CB201FA54E2E002CADD3 /* ViewController.swift in Sources */,
 				6545CB6C1FA5AA4E002CADD3 /* TagsViewController.swift in Sources */,
+				6545CB6E1FA618AD002CADD3 /* ProfileViewController.swift in Sources */,
 				6559834E1FA50AA500D2D29D /* AppDelegate.swift in Sources */,
 				6545CB6A1FA59F23002CADD3 /* CameraViewController.swift in Sources */,
 			);

@@ -57,10 +57,11 @@ class TagsViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
         self.colorPicker.dataSource = self;
         self.colorPicker.delegate = self;
         let imageData1 = UIImagePNGRepresentation(imageArray[0])
-        let base64String1 = imageData1?.base64EncodedData(options: [])
-        
+        let base64String1 = imageData1?.base64EncodedString(options: [])
+        let base64URL1 = base64String1?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         let imageData2 = UIImagePNGRepresentation(imageArray[1])
-        let base64String2 = imageData2?.base64EncodedData(options: [])
+        let base64String2 = imageData2?.base64EncodedString(options: [])
+        let base64URL2 = base64String2?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         // Do any additional setup after loading the view.
     }
 
@@ -133,6 +134,9 @@ class TagsViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDe
         return true
     }
     
+    @IBAction func continueButton(_ sender: Any) {
+        self.tabBarController?.selectedIndex = 4
+    }
     
     /*
     // MARK: - Navigation
