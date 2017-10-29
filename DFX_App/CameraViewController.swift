@@ -2,50 +2,33 @@
 //  CameraViewController.swift
 //  DFX_App
 //
-//  Created by Nathan Lewis on 10/28/17.
+//  Created by Nathan Lewis on 10/29/17.
 //  Copyright © 2017 Nathan Lewis. All rights reserved.
 //
 
 import UIKit
+import DKCamera
 import Photos
 
 class CameraViewController: UIViewController {
     
-    let cameraController = CameraController()
-
-    @IBOutlet weak var capturePreviewView: UIView!
+    var imageCount = 0
+    var imageArray: [UIImage] = []
     
-    @IBOutlet weak var toggleFlashButton: UIButton!
     
-    @IBOutlet weak var toggleCameraButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
     
-    @IBOutlet weak var captureButton: UIButton!
     
-    override var prefersStatusBarHidden: Bool { return true }
+    @IBOutlet var labels: [UILabel]!
+    @IBOutlet var images: [UIImageView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        func configureCameraController() {
-            cameraController.prepare {(error) in
-                if let error = error {
-                    print(error)
-                }
-                
-                try? self.cameraController.displayPreview(on: self.capturePreviewView)
-            }
+        for image in self.images{
+            image.isHidden = true
         }
-        
-        func styleCaptureButton() {
-            captureButton.layer.borderColor = UIColor.black.cgColor
-            captureButton.layer.borderWidth = 2
-            
-            captureButton.layer.cornerRadius = min(captureButton.frame.width, captureButton.frame.height) / 2
-        }
-        
-        styleCaptureButton()
-        
-        configureCameraController()
-
+        continueButton.isHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -54,55 +37,53 @@ class CameraViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    @IBAction func toggleFlash(_ sender: Any) {
-        if cameraController.flashMode == .on {
-            cameraController.flashMode = .off
-            toggleFlashButton.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
+    @IBAction func capture(_ sender: Any) {
+        self.imageCount = 0
+        let camera = DKCamera()
+        camera.didCancel = { () in
+            print("didCancel")
+
+            self.dismiss(animated: true, completion: nil)
         }
-            
-        else {
-            cameraController.flashMode = .on
-            toggleFlashButton.setImage(#imageLiteral(resourceName: "Flash On Icon"), for: .normal)
+
+        camera.didFinishCapturingImage = { (image: UIImage?) in
+            print("didFinishCapturingImage")
+            self.imageArray.append(image!)
+            self.images.remove(at: self.imageCount).image = image
+            self.imageCount += 1
+            if(self.imageCount == 2){
+                self.dismiss(animated: true, completion: nil)
+            }
         }
+        self.present(camera, animated: true, completion: nil)
     }
     
     
-    @IBAction func switchCameras(_ sender: Any) {
-        do {
-            try cameraController.switchCameras()
-        }
-            
-        catch {
-            print(error)
-        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        switch cameraController.currentCameraPosition {
-        case .some(.front):
-            toggleCameraButton.setImage(#imageLiteral(resourceName: "Front Camera Icon"), for: .normal)
+        if(segue.identifier == "toItem") {
             
-        case .some(.rear):
-            toggleCameraButton.setImage(#imageLiteral(resourceName: "Rear Camera Icon"), for: .normal)
-            
-        case .none:
-            return
+            let NextViewController = (segue.destination as! TagsViewController)
+            NextViewController.imageArray = self.imageArray
         }
     }
     
-    
-    @IBAction func captureImage(_ sender: Any) {
-        cameraController.captureImage {(image, error) in
-            guard let image = image else {
-                print(error ?? "Image capture error")
-                return
-            }
-            
-            try? PHPhotoLibrary.shared().performChangesAndWait {
-                PHAssetChangeRequest.creationRequestForAsset(from: image)
-            }
-        }
+    @IBAction func continueToNext(_ sender: Any) {
+        self.performSegue(withIdentifier: "toItem", sender: self)
     }
     
+    func hideEverything(){
+        for label in self.labels {
+            label.isHidden = true
+        }
+        startButton.isHidden = true
+        for image in self.images{
+            image.isHidden = false
+        }
+        continueButton.isHidden = false
+    }
+    
+
     /*
     // MARK: - Navigation
 
